@@ -3,5 +3,17 @@
   color: #fff;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    padding: 38px 19px 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    flex-direction: column;
+  }
 }

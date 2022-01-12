@@ -17,3 +17,12 @@
 .profile__info-btn:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__info-btn {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
+    margin-left: 10px;
+  }
+}

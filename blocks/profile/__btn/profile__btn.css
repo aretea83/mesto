@@ -9,8 +9,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px;
-  position: absolute;
-  right: 0;
   padding: 0;
   cursor: pointer;
   transition: opacity .5s linear;
@@ -19,3 +17,18 @@
 .profile__btn:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__btn {
+    width: 390px;
+    margin-top: 36px;
+    background-size: 16px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__btn {
+    width: 100%;
+  }
+}
+
