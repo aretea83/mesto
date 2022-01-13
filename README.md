@@ -13,5 +13,5 @@
 * Адаптивная верстка
 * Форма отправки данных
 
-[Ссылка на сайт](https://github.com/aretea83/mesto/)
+[Ссылка на сайт](https://aretea83.github.io/mesto/)
 
