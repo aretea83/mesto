@@ -1,0 +1,16 @@
+.gallery__like {
+  background-image: url(../../../images/logo/heart.svg);
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  background-position: center;
+  border: none;
+  background-color: inherit;
+  background-size: cover;
+  cursor: pointer;
+  transition: opacity .5s linear;
+}
+
+.gallery__like:hover {
+  opacity: .7;
+}
