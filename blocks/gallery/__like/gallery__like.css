@@ -14,3 +14,7 @@
 .gallery__like:hover {
   opacity: .7;
 }
+
+.gallery__like:focus {
+  background-image: url(../../../images/logo/heart-active.svg);
+}
