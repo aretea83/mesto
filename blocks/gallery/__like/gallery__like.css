@@ -12,7 +12,7 @@
 }
 
 .gallery__like:hover {
-  opacity: .7;
+  opacity: .5;
 }
 
 .gallery__like:focus {
