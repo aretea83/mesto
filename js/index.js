@@ -100,7 +100,7 @@ const initialCards = [
   });
 });
 
-/*function addCard(evt) {
+function addCard(evt) {
   evt.preventDefault();
   const galleryTemplate = document.querySelector('#gallery-template').content;
   const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
@@ -115,7 +115,7 @@ const initialCards = [
   galleryItem.querySelector('.gallery__like').addEventListener('click', (evt) => { //делаем сердечко активным
     evt.target.classList.toggle('gallery__like_active');
   });
-
+  galleryContainer.prepend(galleryItem);
   galleryItem.querySelector('.gallery__image').addEventListener('click', () => {  // по клику на картинку карточки, фото открывается
     const popupGalleryImg = popupGallery.querySelector('.popup-gallery__img');
     const popupGalleryCaption = popupGallery.querySelector('.popup-gallery__caption');
@@ -124,40 +124,57 @@ const initialCards = [
     popupGalleryCaption.textContent = popupTitle.value;
     popupOpen(popupGallery);
   });
-  galleryContainer.prepend(galleryItem);
-  popupNone(popupCards);
+}
+popupForm.addEventListener('submit', addCard);
+
+
+/*const galleryTemplate = document.querySelector('#gallery-template').content;
+
+function cardCreate() {
+
+  const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
+
+  galleryItem.querySelector('.gallery__item-del').addEventListener('click', (evt) => { //удаление карточки
+    evt.target.closest('.gallery__item');
+    galleryItem.remove();
+  });
+  galleryItem.querySelector('.gallery__image');
+  galleryItem.querySelector('.gallery__element');
+  galleryItem.querySelector('.gallery__name');
+  galleryItem.querySelector('.gallery__like').addEventListener('click', (evt) => { //делаем сердечко активным
+    evt.target.classList.toggle('gallery__like_active');
+  });
+  galleryContainer.append(galleryItem);
 }
 
-popupForm.addEventListener('submit', addCard);*/
-  /*  const galleryTemplate = document.querySelector('#gallery-template').content;
-    const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
-
-    galleryItem.querySelector('.gallery__item-del').addEventListener('click', (evt) => { //удаление карточки
-      evt.target.closest('.gallery__item');
-      galleryItem.remove();
-    });
-    galleryItem.querySelector('.gallery__image');
-    galleryItem.querySelector('.gallery__element');
-    galleryItem.querySelector('.gallery__name');
-    galleryItem.querySelector('.gallery__like').addEventListener('click', (evt) => { //делаем сердечко активным
-      evt.target.classList.toggle('gallery__like_active');
-    });
-
-  initialCards.forEach((item) => {
-    const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
-    galleryItem.querySelector('.gallery__image').src = item.link;
-    galleryItem.querySelector('.gallery__name').textContent = item.name;
-    galleryContainer.append(galleryItem);
+initialCards.forEach((item) => {
+  const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
+  galleryItem.querySelector('.gallery__image').src = item.link;
+  galleryItem.querySelector('.gallery__name').textContent = item.name;
+  galleryItem.querySelector('.gallery__like').addEventListener('click', (evt) => { //делаем сердечко активным
+    evt.target.classList.toggle('gallery__like_active');
   });
+  galleryItem.querySelector('.gallery__item-del').addEventListener('click', (evt) => { //удаление карточки
+    evt.target.closest('.gallery__item');
+    galleryItem.remove();
+  });
+  galleryContainer.append(galleryItem);
+});
 
-  function addCard(evt) {
-    evt.preventDefault();
-    const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
-    galleryItem.querySelector('.gallery__image').src = popupLink.value;
-    galleryItem.querySelector('.gallery__name').textContent = popupName.value;
-    galleryContainer.prepend(galleryItem);
-    popupNone(popupCards);
-  }
+function addCard(evt) {
+  evt.preventDefault();
+  const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
+  galleryItem.querySelector('.gallery__image').src = popupLink.value;
+  galleryItem.querySelector('.gallery__name').textContent = popupTitle.value;
+  galleryItem.querySelector('.gallery__like').addEventListener('click', (evt) => { //делаем сердечко активным
+    evt.target.classList.toggle('gallery__like_active');
+  });
+  galleryItem.querySelector('.gallery__item-del').addEventListener('click', (evt) => { //удаление карточки
+    evt.target.closest('.gallery__item');
+    galleryItem.remove();
+  });
+  galleryContainer.prepend(galleryItem);
+}
+popupCardSubmit.addEventListener('submit', addCard);*/
 
-popupForm.addEventListener('submit', addCard);*/
 
