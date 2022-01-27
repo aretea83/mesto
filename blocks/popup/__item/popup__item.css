@@ -9,10 +9,6 @@
   margin-bottom: 27px;
 }
 
-.popup__item::placeholder {
-  color: #000;
-}
-
 .popup__item:focus {
   outline: none;
 }

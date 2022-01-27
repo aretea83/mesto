@@ -1,0 +1,14 @@
+.gallery__item-del {
+  padding: 0;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  transition: opacity .5s linear;
+}
+
+.gallery__item-del:hover {
+  opacity: .6;
+}
