@@ -158,10 +158,12 @@ addCards();
 
 function cardFormSubmit(evt) {
   evt.preventDefault();
+  const galleryItem = galleryTemplate.querySelector('.gallery__item').cloneNode(true);
+
   galleryItem.querySelector('.gallery__image').src = popupLink.value;
   galleryItem.querySelector('.gallery__name').textContent = popupTitle.value;
 
-  galleryContainer.prepend(createCard);
+  galleryContainer.prepend(galleryItem);
   popupNone(popupCards);
 }
 
