@@ -1,25 +1,25 @@
-let profileInfoButton = document.querySelector('.profile__info-btn'); // section profile
-let profileName = document.querySelector('.profile__info-name');
-let profileAbout = document.querySelector('.profile__info-about');
-let profileButton = document.querySelector('.profile__btn');
+const profileInfoButton = document.querySelector('.profile__info-btn'); // section profile
+const profileName = document.querySelector('.profile__info-name');
+const profileAbout = document.querySelector('.profile__info-about');
+const profileButton = document.querySelector('.profile__btn');
 
-let galleryContainer = document.querySelector('.gallery__items'); // ul из section gallery
+const galleryContainer = document.querySelector('.gallery__items'); // ul из section gallery
 
-//let popup = document.querySelector('.popup');
-let popupProfile = document.querySelector('.popup-profile'); // popup-profile
-let popupProfileClose = popupProfile.querySelector('.popup-profile__close');
-let popupProfileForm = popupProfile.querySelector('.popup__items');
-let popupProfileName = popupProfileForm.querySelector('#popup-name');
-let popupProfileAbout = popupProfileForm.querySelector('#popup-about');
+//const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup-profile'); // popup-profile
+const popupProfileClose = popupProfile.querySelector('.popup-profile__close');
+const popupProfileForm = popupProfile.querySelector('.popup__items');
+const popupProfileName = popupProfileForm.querySelector('#popup-name');
+const popupProfileAbout = popupProfileForm.querySelector('#popup-about');
 
-let popupCards = document.querySelector('.popup-cards'); // popup-cards
-let popupCloseCards = popupCards.querySelector('.popup__close-cards');
-let popupCardsCardSubmit = popupCards.querySelector('.popup__items-cards');
-let popupCardsTitle = popupCards.querySelector('#popup-title');
-let popupCardsLink = popupCards.querySelector('#popup-link');
+const popupCards = document.querySelector('.popup-cards'); // popup-cards
+const popupCloseCards = popupCards.querySelector('.popup__close-cards');
+const popupCardsCardSubmit = popupCards.querySelector('.popup__items-cards');
+const popupCardsTitle = popupCards.querySelector('#popup-title');
+const popupCardsLink = popupCards.querySelector('#popup-link');
 
-let popupGallery = document.querySelector('.popup-gallery'); // popup-gallery
-let popupGalleryClose = popupGallery.querySelector('.popup-gallery__close');
+const popupGallery = document.querySelector('.popup-gallery'); // popup-gallery
+const popupGalleryClose = popupGallery.querySelector('.popup-gallery__close');
 
 // делаем popup видимым
 function popupOpen(popup) { // эта функция принимает узел Node, которая является попапом (popupGallery или popupCards)
