@@ -68,6 +68,7 @@ function createCard(name, link) { // создание карточки
     const popupGalleryCaption = popupGallery.querySelector('.popup-gallery__caption');
 
     popupGalleryImg.src = link;
+    popupGalleryImg.alt = name;
     popupGalleryCaption.textContent = name;
     popupOpen(popupGallery);
   });
