@@ -40,9 +40,11 @@
       <div class="popup__container">
         <button type="button" class="popup__close popup-profile__close"><img src="./images/logo/close.svg" alt="Закрыть окно" class="popup__close-img"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="#" name="form-popup" class="popup__items">
-            <input type="text" id="popup-name" class="popup__item" value="Имя" name="name" placeholder="Ваше имя" required>
-            <input type="text" id="popup-about" class="popup__item" value="Деятельность" name="about" placeholder="Ваш род деятельности" required>
+        <form action="#" name="form-popup" class="popup__items" novalidate>
+            <input type="text" id="popup-name" class="popup__item" value="Имя" name="name" placeholder="Ваше имя" minlength="2" maxlength="40" required>
+            <span class="popup__error_visible popup-name-error"></span>
+            <input type="text" id="popup-about" class="popup__item" value="Деятельность" name="about" placeholder="Ваш род деятельности" minlength="2" maxlength="200" required>
+            <span class="popup__error_visible popup-about-error"></span>
             <button type="submit" class="popup__btn">Сохранить</button>
         </form>
       </div>
@@ -52,9 +54,11 @@
       <div class="popup__container">
         <button type="button" class="popup__close popup__close-cards"><img src="./images/logo/close.svg" alt="Закрыть окно" class="popup__close-img"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form action="#" name="form-popup" class="popup__items popup__items-cards">
-            <input type="text" id="popup-title" class="popup__item popup__item-card" value="" name="title" placeholder="Название" required>
-            <input type="text" id="popup-link" class="popup__item popup__item-card" value="" name="link" placeholder="Ссылка на картинку" required>
+        <form action="#" name="form-popup" class="popup__items popup__items-cards" novalidate>
+            <input type="text" id="popup-title" class="popup__item popup__item-card" value="" name="title" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="popup__error_visible popup-title-error"></span>
+            <input type="url" id="popup-link" class="popup__item popup__item-card" value="" name="link" placeholder="Ссылка на картинку" required>
+            <span class="popup__error_visible popup-link-error"></span>
             <button type="submit" class="popup__btn popup__btn-cards">Создать</button>
         </form>
       </div>
@@ -80,5 +84,6 @@
     </template>
 
   <script src="js/index.js"></script>
+  <script src="js/validate.js"></script>
 </body>
 </html>
