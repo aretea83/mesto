@@ -18,6 +18,7 @@ const popupCloseCards = popupCards.querySelector('.popup__close-cards');
 const popupCardsCardSubmit = popupCards.querySelector('.popup__items-cards');
 const popupCardsTitle = popupCards.querySelector('#popup-title');
 const popupCardsLink = popupCards.querySelector('#popup-link');
+const popupCardsBtn = popupCards.querySelector('.popup__btn');
 
 const popupGallery = document.querySelector('.popup-gallery'); // popup-gallery
 const popupGalleryClose = popupGallery.querySelector('.popup-gallery__close');
@@ -98,6 +99,8 @@ function cardFormSubmit(evt) {
   closePopup(popupCards);
 
   popupCardsCardSubmit.reset(); // обнуляем инпуты добавления карточки
+  popupCardsBtn.disabled = true;
+  popupCardsBtn.classList.add('popup__btn_disabled');
 }
 
 function likeCard(evt) { // функция лайков
