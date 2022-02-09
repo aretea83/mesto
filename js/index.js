@@ -21,6 +21,8 @@ const popupCardsLink = popupCards.querySelector('#popup-link');
 
 const popupGallery = document.querySelector('.popup-gallery'); // popup-gallery
 const popupGalleryClose = popupGallery.querySelector('.popup-gallery__close');
+const popupGalleryImg = popupGallery.querySelector('.popup-gallery__img');
+const popupGalleryCaption = popupGallery.querySelector('.popup-gallery__caption');
 
 // карточки через template
 const initialCards = [{
@@ -68,15 +70,13 @@ function createCard(name, link) { // создание карточки
 }
 
 function openGalleryImage(evt) { // функция открытия большой картинки
-  const popupGalleryImg = popupGallery.querySelector('.popup-gallery__img');
-  const popupGalleryCaption = popupGallery.querySelector('.popup-gallery__caption');
   const name = evt.target.closest('.gallery__item').querySelector('.gallery__name').textContent;
   const link = evt.target.closest('.gallery__item').querySelector('.gallery__image').src;
 
   popupGalleryImg.src = link;
   popupGalleryImg.alt = name;
   popupGalleryCaption.textContent = name;
-  popupOpen(popupGallery);
+  openPopup(popupGallery);
 }
 
 function addCard(container, element) { // функция добавления элемента в контейнер
@@ -111,7 +111,7 @@ function deleteCard(evt) { // функция удаления карточки
 }
 
 // делаем popup видимым
-function popupOpen(popup) { // эта функция принимает узел Node, которая является попапом
+function openPopup(popup) { // эта функция принимает узел Node, которая является попапом
   popup.classList.add('popup_opened');
   popup.addEventListener('click', clickOnPage);  // слушатель при клике вне попапа
   page.addEventListener('keydown', keyHandlerEsc); // слушатель при нажатии на Esc
@@ -147,13 +147,13 @@ function clickOnPage(evt) { // функция закрытия попапа по
 }
 
 profileInfoButton.addEventListener('click', () => {// нажатием кнопки в профайле открываем popup
-  popupOpen(popupProfile);
+  openPopup(popupProfile);
   popupProfileName.value = profileName.textContent;
   popupProfileAbout.value = profileAbout.textContent;
 });
 popupProfileClose.addEventListener('click', () => closePopup(popupProfile)); // клик по кнопке закрыть(закрывается popup)
 popupProfileForm.addEventListener('submit', formSubmitHandler); //отправка формы
-profileButton.addEventListener('click', () => popupOpen(popupCards)); // открыть popup карточки
+profileButton.addEventListener('click', () => openPopup(popupCards)); // открыть popup карточки
 popupCloseCards.addEventListener('click', () => closePopup(popupCards)); // закрыть popup карточки
 popupGalleryClose.addEventListener('click', () => closePopup(popupGallery)); // закрыть фото с карточки
 popupCardsCardSubmit.addEventListener('submit', cardFormSubmit); // добавление карточки при отправке формы popupCards
