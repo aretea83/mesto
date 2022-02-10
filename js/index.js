@@ -88,7 +88,7 @@ initialCards.reverse().forEach(item => { // перебор массива с к�
   addCard(galleryContainer, createCard(item.name, item.link));
 });
 
-function cardFormSubmit(evt) {
+function submitCardForm(evt) {
   evt.preventDefault();
 
   const item = {  // заменяем значения из инпутов popup
@@ -117,18 +117,18 @@ function deleteCard(evt) { // функция удаления карточки
 function openPopup(popup) { // эта функция принимает узел Node, которая является попапом
   popup.classList.add('popup_opened');
   popup.addEventListener('click', clickOnPage);  // слушатель при клике вне попапа
-  page.addEventListener('keydown', keyHandlerEsc); // слушатель при нажатии на Esc
+  page.addEventListener('keydown', closePopupOnEsc); // слушатель при нажатии на Esc
 }
 
 // закрываем popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('click', clickOnPage);  // удаляем слушатели при закрытии попапа
-  page.removeEventListener('keydown', keyHandlerEsc); // удаляем слушатели при закрытии попапа
+  page.removeEventListener('keydown', closePopupOnEsc); // удаляем слушатели при закрытии попапа
 }
 
 // вводим текст в поля из input и закрываем popup функцией closePopup
-function formSubmitHandler(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
 
   profileName.textContent = popupProfileName.value;
@@ -137,7 +137,7 @@ function formSubmitHandler(evt) {
   closePopup(popupProfile);
 }
 
-function keyHandlerEsc(evt) { // функция закрытия popup на Esc
+function closePopupOnEsc(evt) { // функция закрытия popup на Esc
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened')); // срабатывает на открытом попапе
   }
@@ -155,10 +155,10 @@ profileInfoButton.addEventListener('click', () => {// нажатием кноп�
   popupProfileAbout.value = profileAbout.textContent;
 });
 popupProfileClose.addEventListener('click', () => closePopup(popupProfile)); // клик по кнопке закрыть(закрывается popup)
-popupProfileForm.addEventListener('submit', formSubmitHandler); //отправка формы
+popupProfileForm.addEventListener('submit', submitProfileForm); //отправка формы
 profileButton.addEventListener('click', () => openPopup(popupCards)); // открыть popup карточки
 popupCloseCards.addEventListener('click', () => closePopup(popupCards)); // закрыть popup карточки
 popupGalleryClose.addEventListener('click', () => closePopup(popupGallery)); // закрыть фото с карточки
-popupCardsCardSubmit.addEventListener('submit', cardFormSubmit); // добавление карточки при отправке формы popupCards
+popupCardsCardSubmit.addEventListener('submit', submitCardForm); // добавление карточки при отправке формы popupCards
 
 
