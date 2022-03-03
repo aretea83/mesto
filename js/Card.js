@@ -15,6 +15,7 @@ export class Card {
 
   _deleteCard(evt) { // функция удаления карточки
     evt.target.closest('.gallery__item').remove();
+    this._element = null;
   }
 
   _likeCard(evt) { // лайк карточки

@@ -61,17 +61,21 @@ const  settings = ({
   submitButtonSelector: '.popup__btn',
   inactiveButtonClass: 'popup__btn_disabled',
   inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__error'
 });
 
 const profileValidator = new FormValidator(settings, popupProfileForm);
 const cardValidator = new FormValidator(settings, popupCardsForm);
 
-initialCards.reverse().forEach((item) => { // перебор массива и добавление карточек из него
-  const card = new Card(item, '#gallery-template');
+function createCard(name, link) {
+  const card = new Card(name, link);
   const cardElement = card.generateCard();
 
   galleryContainer.prepend(cardElement);
+}
+
+initialCards.reverse().forEach((item) => { // перебор массива и добавление карточек из него
+  createCard(item, '#gallery-template');
 });
 
 function submitCardForm(evt) {
@@ -81,10 +85,7 @@ function submitCardForm(evt) {
     link: popupCardsLink.value,
     name: popupCardsTitle.value
   };
-  const card = new Card(item, '#gallery-template'); // добавление сарточки из попапа
-  const cardElement = card.generateCard();
-
-  galleryContainer.prepend(cardElement);
+  createCard(item, '#gallery-template');
   closePopup(popupCards);
 
   popupCardsForm.reset(); // обнуляем инпуты добавления карточки
@@ -132,9 +133,9 @@ profileValidator.enableValidation(); // вызов функций валидац
 cardValidator.enableValidation();
 
 profileInfoButton.addEventListener('click', () => {// нажатием кнопки в профайле открываем popup
-  openPopup(popupProfile);
   popupProfileName.value = profileName.textContent;
   popupProfileAbout.value = profileAbout.textContent;
+  openPopup(popupProfile);
 });
 popupProfileClose.addEventListener('click', () => closePopup(popupProfile)); // клик по кнопке закрыть(закрывается popup)
 popupProfileForm.addEventListener('submit', submitProfileForm); //отправка формы
