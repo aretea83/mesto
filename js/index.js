@@ -71,21 +71,25 @@ function createCard(name, link) {
   const card = new Card(name, link);
   const cardElement = card.generateCard();
 
-  galleryContainer.prepend(cardElement);
+  return cardElement;
+}
+
+function addCard(container, element) { // функция добавления элемента в контейнер
+  container.prepend(element);
 }
 
 initialCards.reverse().forEach((item) => { // перебор массива и добавление карточек из него
-  createCard(item, '#gallery-template');
+  addCard(galleryContainer, createCard(item, '#gallery-template'));
 });
 
 function submitCardForm(evt) {
   evt.preventDefault();
-
   const item = {  // заменяем значения из инпутов popup
     link: popupCardsLink.value,
     name: popupCardsTitle.value
   };
-  createCard(item, '#gallery-template');
+
+  addCard(galleryContainer, createCard(item, '#gallery-template'));
   closePopup(popupCards);
 
   popupCardsForm.reset(); // обнуляем инпуты добавления карточки
