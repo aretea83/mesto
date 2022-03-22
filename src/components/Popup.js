@@ -29,7 +29,6 @@ export default class Popup {
     this._popup.classList.add('popup_opened');
     this._popup.addEventListener('click', this._handlePageClose);
     document.addEventListener('keydown', this._handleEscClose);
-    this.setEventListeners();
   }
 
   close(){

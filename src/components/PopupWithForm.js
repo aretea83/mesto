@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._submitForm = this._submitForm.bind(this);
     this._inputList = Array.from(this._popup.querySelectorAll('.popup__item'));
+    this._form = this._popup.querySelector('.popup__items');
   }
 
   _getInputValues() {   //собирает данные всех полей формы
@@ -28,10 +29,7 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {   //при закрытии попапа форма должна ещё и сбрасываться
-    this._popup.removeEventListener('submit', this._submitForm);
-    this._inputList.forEach((input) => {
-      input.value = '';
-    });
+    this._form.reset();
     super.close();
   }
 }

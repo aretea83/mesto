@@ -29,21 +29,16 @@ const renderCards = new Section({  // перебор и добавление в 
   }
 }, '.gallery__items');
 
-const addCard = () => {  // добавление карточки
-  renderCards.addItem(createCard({
-    name: popupCardsTitle.value,
-    link: popupCardsLink.value
-  }));
+const addCard = (item) => {  // добавление карточки
+  popupCardsWithForm.setEventListeners();
+  renderCards.addItem(createCard(item));
+  popupCardsWithForm.close();
 }
 
 const popupCardsWithForm = new PopupWithForm('.popup-cards', addCard);
 
-const submitCardForm = () => {
-  popupCardsBtn.disabled = true;
-  popupCardsBtn.classList.add('popup__btn_disabled');
-  popupCardsLink.value = '';
-  popupCardsTitle.value = '';
-
+const openCardForm = () => {
+  cardValidator.enableValidation();
   popupCardsWithForm.open();
 }
 
@@ -63,9 +58,12 @@ const changeProfile = () => { // замена данных профиля
   popupProfileWithForm.open();
 }
 
-profileButton.addEventListener('click', submitCardForm);
+profileButton.addEventListener('click', openCardForm);
 profileInfoButton.addEventListener('click', changeProfile);
 profileValidator.enableValidation(); // вызов функций валидации
-cardValidator.enableValidation();
+//cardValidator.enableValidation();
 renderCards.renderItems();  // вызов загрузки карточек
+popupCardsWithForm.setEventListeners();
+popupProfileWithForm.setEventListeners();
+popupWithImage.setEventListeners();
 

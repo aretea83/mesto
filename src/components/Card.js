@@ -24,17 +24,18 @@ export default class Card {
   _setEventListeners() { // все оработчики
     this._element.querySelector('.gallery__item-del').addEventListener('click', this._deleteCard);
     this._likeButton.addEventListener('click', this._likeCard);
-    this._element.querySelector('.gallery__image').addEventListener('click', this._handleCardClick);
-    //popupGalleryClose.addEventListener('click', () => closePopup(popupGallery));
+    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 
   generateCard() { // создание карточки
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.gallery__image');
+    this._cardName = this._element.querySelector('.gallery__name');
     this._setEventListeners();
 
-    this._element.querySelector('.gallery__name').textContent = this._name;
-    this._element.querySelector('.gallery__image').src = this._link;
-    this._element.querySelector('.gallery__image').alt = this._name;
+    this._cardName.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
 
     return this._element;
   }
