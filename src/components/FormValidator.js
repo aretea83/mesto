@@ -10,15 +10,23 @@ export default class FormValidator {
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
+  resetValidation() {
+    this._toggleButtonState(); // управляем кнопкой
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement) // очищаем ошибки
+    });
+  }
+
   _showInputError(inputElement, errorMessage) { // добавляем ошибку
-    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
-    this._errorElement.textContent = errorMessage;
+    errorElement.textContent = errorMessage;
   }
 
   _hideInputError(inputElement) { // убираем ошибку
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
-    this._errorElement.textContent = '';
+    errorElement.textContent = '';
   }
 
   _checkInputValidity(inputElement) { // проверка валидности поля

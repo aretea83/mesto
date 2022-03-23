@@ -30,7 +30,6 @@ const renderCards = new Section({  // перебор и добавление в 
 }, '.gallery__items');
 
 const addCard = (item) => {  // добавление карточки
-  popupCardsWithForm.setEventListeners();
   renderCards.addItem(createCard(item));
   popupCardsWithForm.close();
 }
@@ -38,7 +37,7 @@ const addCard = (item) => {  // добавление карточки
 const popupCardsWithForm = new PopupWithForm('.popup-cards', addCard);
 
 const openCardForm = () => {
-  cardValidator.enableValidation();
+  cardValidator.resetValidation();
   popupCardsWithForm.open();
 }
 
@@ -55,13 +54,14 @@ const changeProfile = () => { // замена данных профиля
   popupProfileName.value = profileInfo.name;
   popupProfileAbout.value = profileInfo.about;
 
+  profileValidator.resetValidation();
   popupProfileWithForm.open();
 }
 
 profileButton.addEventListener('click', openCardForm);
 profileInfoButton.addEventListener('click', changeProfile);
 profileValidator.enableValidation(); // вызов функций валидации
-//cardValidator.enableValidation();
+cardValidator.enableValidation();
 renderCards.renderItems();  // вызов загрузки карточек
 popupCardsWithForm.setEventListeners();
 popupProfileWithForm.setEventListeners();
