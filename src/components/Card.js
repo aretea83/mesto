@@ -1,10 +1,15 @@
-
 export default class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, userId, cardSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
     this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes;
+    this._id = data._id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() { // разметка карточки
@@ -13,17 +18,35 @@ export default class Card {
     return this._cardElement;
   }
 
-  _deleteCard = () => { // функция удаления карточки
+  deleteCard = () => { // функция удаления карточки
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
-  _likeCard = () => { // лайк карточки
-      this._likeButton.classList.toggle('gallery__like_active');
+  setLikes(newLikes) {
+    this._likes = newLikes;
+    const likeCount = this._element.querySelector('.gallery__like-count');
+    likeCount.textContent = this._likes.length;
+
+    if(this.isLiked()) {
+      this._likeButton.classList.add('gallery__like_active');
+    } else {
+      this._likeButton.classList.remove('gallery__like_active');
+    }
+  }
+
+  isLiked() {
+    const userLikedCard = this._likes.find(user => user._id === this._userId);
+    return userLikedCard;
   }
 
   _setEventListeners() { // все оработчики
-    this._element.querySelector('.gallery__item-del').addEventListener('click', this._deleteCard);
-    this._likeButton.addEventListener('click', this._likeCard);
+    this._element.querySelector('.gallery__item-del').addEventListener('click', () => this._handleDeleteClick(this._id));
+    this._likeButton.addEventListener('click', ()=>{
+      //this._likeButton.classList.toggle('gallery__like_active');
+      this._handleLikeClick(this._id);
+    });
+
     this._cardImage.addEventListener('click', this._handleCardClick);
   }
 
@@ -32,11 +55,16 @@ export default class Card {
     this._cardImage = this._element.querySelector('.gallery__image');
     this._cardName = this._element.querySelector('.gallery__name');
     this._setEventListeners();
+    this.setLikes(this._likes);
 
     this._cardName.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
 
-    return this._element;
+    if(this._userId !== this._ownerId) {
+    this._element.querySelector('.gallery__item-del').style.display = 'none';
+    }
+
+    return this._element
   }
 }
