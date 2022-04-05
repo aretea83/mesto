@@ -118,8 +118,8 @@ const popupAvatarWithForm = new PopupWithForm('.popup-avatar', handleFormAvatar)
 function handleFormAvatar (data){
   popupAvatarWithForm.renderLoading(true);
   api.patchAvatar(data)
-    .then (() => {
-      userInfo.setUserInfo(data.link);
+    .then ((res) => {
+      userInfo.setUserInfo(res);
       popupAvatarWithForm.close();
     })
     .catch((err) => console.log(err))
