@@ -16,12 +16,26 @@ const popupWithImage = new PopupWithImage('.popup-gallery');
 
 let userId;
 // профиль
-api.getProfile()
-  .then((res) => {
-    userInfo.setUserInfo(res)
-    userId = res._id;
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    userId = userData._id;
+    cards.forEach((item) => {
+      const card = createCard(item, userId);
+      renderCards.setItem(card);
+    })
   })
-  .catch((err) => console.log(err));
+  .catch(err => {
+    console.log(err);
+  });
+
+//
+// api.getProfile()
+//   .then((res) => {
+//     userInfo.setUserInfo(res)
+//     userId = res._id;
+//   })
+//   .catch((err) => console.log(err));
 
 const userInfo = new UserInfo({userName: profileName, userAbout: profileAbout, userAvatar: profileAvatar});
 
@@ -55,13 +69,14 @@ const renderCards = new Section({  // перебор и добавление в 
   }
 }, '.gallery__items');
 
-  api.getInitialCards(userId)
-  .then(res => {
-    res.forEach((data) => {
-      const card = createCard(data, userId)
-      renderCards.setItem(card)
-    })
-  })
+
+// api.getInitialCards(userId)
+// .then(res => {
+//   res.forEach((data) => {
+//     const card = createCard(data, userId)
+//     renderCards.setItem(card)
+//   })
+// })
 
 const confirmPopup = new PopupWitConfirmation('.popup__card-delete');
 

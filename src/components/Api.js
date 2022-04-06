@@ -4,24 +4,25 @@ class Api {
     this._headers = options.headers;
   }
 
+  _checkResponse(res) {
+    if (!res.ok) {
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+  return res.json()
+  }
+
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err); // выведем ошибку в консоль
-    })
+    .then(res => this._checkResponse(res))
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(res => this._checkResponse(res))
   }
 
   editProfile(data) {
@@ -33,10 +34,7 @@ class Api {
         about: data.about
       })
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(res => this._checkResponse(res))
   }
 
   postCard(name, link) {
@@ -48,10 +46,7 @@ class Api {
         link
       })
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(res => this._checkResponse(res))
   }
 
   deleteCard(id) {
@@ -59,10 +54,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(res => this._checkResponse(res))
   }
 
   deleteLike(id) {
@@ -70,10 +62,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(res => this._checkResponse(res))
   }
 
   putLike(id) {
@@ -81,10 +70,7 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(res => this._checkResponse(res))
   }
 
   patchAvatar(data) {
@@ -95,10 +81,7 @@ class Api {
         avatar: data.link
       })
     })
-      .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch((err) => {
-        console.log(err);
-      })
+    .then(res => this._checkResponse(res))
   }
 
 }
