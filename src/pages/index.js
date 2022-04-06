@@ -78,7 +78,7 @@ const renderCards = new Section({  // перебор и добавление в 
 //   })
 // })
 
-const confirmPopup = new PopupWitConfirmation('.popup__card-delete');
+const confirmPopup = new PopupWitConfirmation('.popup-card-delete');
 
 function createCard(item) {  // создаем карточку
   const card = new Card(item, userId, '#gallery-template', handleCardClick, (id) => { // функция handleDeleteClick
