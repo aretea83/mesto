@@ -9,12 +9,8 @@ export default class Section {
     this._container.prepend(element);
   }
 
-  setItem(element) { //принимает DOM-элемент и добавляет его в контейнер
-    this._container.append(element);
-  }
-
-  renderItems() {
-    this._renderedItems.reverse().forEach((item) => {
+  renderItems(items) {
+    items.reverse().forEach((item) => {
       this._renderer(item);
     });
   }

@@ -14,7 +14,6 @@ export default class Card {
 
   _getTemplate() { // разметка карточки
     this._cardElement = document.querySelector(this._cardSelector).content.querySelector('.gallery__item').cloneNode(true);
-    this._likeButton = this._cardElement.querySelector('.gallery__like');
     return this._cardElement;
   }
 
@@ -25,10 +24,9 @@ export default class Card {
 
   setLikes(newLikes) {
     this._likes = newLikes;
-    const likeCount = this._element.querySelector('.gallery__like-count');
-    likeCount.textContent = this._likes.length;
+    this._likeCount.textContent = this._likes.length;
 
-    if(this.isLiked()) {
+    if (this.isLiked()) {
       this._likeButton.classList.add('gallery__like_active');
     } else {
       this._likeButton.classList.remove('gallery__like_active');
@@ -42,8 +40,7 @@ export default class Card {
 
   _setEventListeners() { // все оработчики
     this._element.querySelector('.gallery__item-del').addEventListener('click', () => this._handleDeleteClick(this._id));
-    this._likeButton.addEventListener('click', ()=>{
-      //this._likeButton.classList.toggle('gallery__like_active');
+    this._likeButton.addEventListener('click', () => {
       this._handleLikeClick(this._id);
     });
 
@@ -54,6 +51,8 @@ export default class Card {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.gallery__image');
     this._cardName = this._element.querySelector('.gallery__name');
+    this._likeCount = this._element.querySelector('.gallery__like-count');
+    this._likeButton = this._cardElement.querySelector('.gallery__like');
     this._setEventListeners();
     this.setLikes(this._likes);
 
@@ -61,8 +60,8 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
 
-    if(this._userId !== this._ownerId) {
-    this._element.querySelector('.gallery__item-del').style.display = 'none';
+    if (this._userId !== this._ownerId) {
+      this._element.querySelector('.gallery__item-del').style.display = 'none';
     }
 
     return this._element

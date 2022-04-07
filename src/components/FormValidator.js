@@ -54,11 +54,11 @@ export default class FormValidator {
   }
 
   _setEventListeners() { // обработчик всех полей формы
-    this._toggleButtonState(this._buttonElement); // проверяем состояние кнопки в начале
+    this._toggleButtonState(); // проверяем состояние кнопки в начале
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement); // проверяем изменение любого из полей
-        this._toggleButtonState(this._buttonElement); // проверям состояние кнопки
+        this._toggleButtonState(); // проверям состояние кнопки
       });
     });
   }

@@ -10,7 +10,7 @@ export default class PopupWithForm extends Popup {
     this._formBtn = this._form.querySelector('.popup__btn');
   }
 
-  _getInputValues() {   //собирает данные всех полей формы
+  _getInputValues() { //собирает данные всех полей формы
     const inputValues = {};
     this._inputList.forEach((input) => {
       inputValues[input.name] = input.value;
@@ -21,15 +21,15 @@ export default class PopupWithForm extends Popup {
   _submitForm(evt) {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
-    this.close();
+    //this.close();
   }
 
-  setEventListeners() {   //добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
+  setEventListeners() { //добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
     this._popup.addEventListener('submit', this._submitForm);
     super.setEventListeners();
   }
 
-  close() {   //при закрытии попапа форма должна ещё и сбрасываться
+  close() { //при закрытии попапа форма должна ещё и сбрасываться
     this._form.reset();
     super.close();
   }
@@ -37,11 +37,8 @@ export default class PopupWithForm extends Popup {
   renderLoading(isLoading) {
     if (isLoading) {
       this._formBtn.textContent = 'Сохранение...';
-      this._popup.classList.add('.popup_opened');
     } else {
       this._formBtn.textContent = 'Сохранить';
-      this._popup.classList.remove('.popup_opened');
     }
   }
 }
-
